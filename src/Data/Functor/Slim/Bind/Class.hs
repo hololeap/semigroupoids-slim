@@ -8,6 +8,8 @@ License     :  BSD-style (see the file LICENSE)
 Mostly copied directly from the @semigroupoids@ package
 -}
 
+{-# Language Safe #-}
+
 module Data.Functor.Slim.Bind.Class
   (
   -- * Apply
@@ -73,6 +75,12 @@ class Functor f => Apply f where
 
 instance (Apply f, Apply g) => Apply (Compose f g) where
   Compose f <.> Compose x = Compose ((<.>) <$> f <.> x)
+
+-- | A @'Const' m@ is not 'Applicative' unless its @m@ is a 'Monoid', but it is an instance of 'Apply'
+instance Semigroup m => Apply (Const m) where
+  Const m <.> Const n = Const (m <> n)
+  Const m <.  Const n = Const (m <> n)
+  Const m  .> Const n = Const (m <> n)
 
 -- | A 'Monad' sans 'return'.
 --

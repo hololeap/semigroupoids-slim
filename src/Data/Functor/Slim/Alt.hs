@@ -10,7 +10,7 @@ Mostly copied directly from the @semigroupoids@ package
 
 {-# LANGUAGE RankNTypes #-}
 {-# LANGUAGE ScopedTypeVariables #-}
-{-# LANGUAGE Trustworthy #-}
+{-# LANGUAGE Safe #-}
 {-# LANGUAGE ConstrainedClassMethods #-}
 
 {-# options_ghc -fno-warn-deprecations #-}

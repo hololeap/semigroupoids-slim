@@ -8,7 +8,7 @@ License     :  BSD-style (see the file LICENSE)
 Mostly copied directly from the @semigroupoids@ package
 -}
 
-{-# LANGUAGE Trustworthy #-}
+{-# LANGUAGE Safe #-}
 
 module Data.Functor.Slim.Plus
   ( Plus(..)
@@ -25,7 +25,6 @@ import Data.Functor.Compose
 import Data.Functor.Product
 import qualified Data.Monoid as Monoid
 import Data.Proxy
-
 
 -- | Laws:
 --

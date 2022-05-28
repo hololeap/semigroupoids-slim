@@ -11,6 +11,7 @@ Mostly copied directly from the @semigroupoids@ package
 
 {-# Language DeriveTraversable #-}
 {-# Language GeneralizedNewtypeDeriving #-}
+{-# Language Trustworthy #-}
 
 module Data.Functor.Slim.Apply
   ( Apply(..)

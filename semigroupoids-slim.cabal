@@ -4,7 +4,8 @@ version:            0.1.0.0
 synopsis:
     Slimmed-down fork of semigroupoids with minimal dependencies
 
--- A longer description of the package.
+tested-with:        GHC == { 8.8.4, 8.10.7, 9.0.2, 9.2.2 }
+
 -- description:
 homepage:           https://github.com/hololeap/semigroupoids-slim
 bug-reports:        https://github.com/hololeap/semigroupoids-slim/issues
@@ -24,21 +25,16 @@ source-repository head
     type:           git
     location:       https://github.com/hololeap/semigroupoids-slim
 
+flag pedantic
+    description:    Turn on -Werror
+    default:        False
+    manual:         True
+
 common all
-    ghc-options:         -Weverything
-                         -Wno-missing-exported-signatures
-                         -Wno-missing-import-lists
-                         -Wno-missed-specialisations
-                         -Wno-all-missed-specialisations
-                         -Wno-unsafe
-                         -Wno-safe
-                         -Wno-missing-safe-haskell-mode
-                         -Wno-missing-local-signatures
-                         -Wno-implicit-prelude
-                         -Wno-prepositive-qualified-module
-                         -Wno-missing-deriving-strategies
-                         -Wno-deriving-typeable
+    ghc-options:         -Wall
                          -foptimal-applicative-do
+    if flag(pedantic)
+        ghc-options:     -Werror
 
 library
     import: all
@@ -47,6 +43,10 @@ library
         , Data.Functor.Slim.Alt
         , Data.Functor.Slim.Apply
         , Data.Functor.Slim.Plus
+        , Data.Semigroup.Slim.Foldable
+        , Data.Semigroup.Slim.Foldable.Class
+        , Data.Semigroup.Slim.Traversable
+        , Data.Semigroup.Slim.Traversable.Class
         , Semigroupoids.Slim.Do
 
     -- Modules included in this library but not exported.
@@ -54,6 +54,7 @@ library
 
     -- LANGUAGE extensions used by modules in this package.
     -- other-extensions:
-    build-depends:    base >=4.13 && <5
+    build-depends:
+        , base >=4.13 && <5
     hs-source-dirs:   src
     default-language: Haskell2010
